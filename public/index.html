@@ -1,89 +1,222 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/9.9.4/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/9.9.4/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/9.9.4/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/9.9.4/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/9.9.4/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/9.9.4/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/9.9.4/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/9.9.4/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/9.9.4/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/9.9.4/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
+    <title>Frontend Mentor | Product preview card component</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500;700&display=swap");
+
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+
+      body {
+        background-color: hsl(30, 38%, 92%);
+        /* width: 1440px; */
+      }
+
+      .container {
+        display: flex;
+        width: 100vh;
+        height: 92vh;
+        margin: auto;
+        align-items: center;
+      }
+
+      .card-product {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        background-color: hsl(0, 0%, 100%);
+        width: 100%;
+      }
+
+      img {
+        width: 325px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+
+      #mobile {
+        display: none;
+      }
+
+      .content {
+        margin-left: 35px;
+        margin-right: 35px;
+      }
+
+      .content p:nth-child(1) {
+        text-transform: uppercase;
+        color: hsl(228, 12%, 48%);
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .content p:nth-child(2) {
+        font-size: 40px;
+        font-weight: bold;
+        margin-top: -1px;
+        margin-bottom: -1px;
+      }
+
+      .content p:nth-child(3) {
+        color: hsl(228, 12%, 48%);
+        font-family: "Montserrat", sans-serif;
+        line-height: 1.3;
+        font-size: 14px;
+      }
+
+      .content p:nth-child(4) {
+        font-size: 35px;
+        color: hsl(158, 36%, 37%);
+        display: flex;
+        font-family: "Fraunces", serif;
+      }
+      #price {
+        font-size: 14px;
+        text-decoration: line-through;
+        color: hsl(228, 12%, 48%);
+        margin-left: 20px;
+        align-self: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      button {
+        background-color: hsl(158, 36%, 37%);
+        color: white;
+        width: 100%;
+        height: 50px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+
+      button:hover {
+        background-color: hsl(212, 21%, 14%);
+      }
+
+      #cart,
+      svg {
+        align-self: center;
+      }
+
+      #cart {
+        margin-left: 10px;
+        font-weight: bold;
+      }
+
+      @media (max-width: 700px) and (min-width: 375px) {
+        /* body {
+          max-width: 375px;
+        } */
+
+        .attribution {
+          font-size: 11px;
+          text-align: center;
+          position: relative;
+          margin-top: 250px;
+          margin-bottom: 20px;
+          /* margin-left: 150px; */
+          /* bottom: 15px; */
+          /* height: 50vh; */
+          /* width: 100vh; */
+        }
+
+        .container {
+          display: flex;
+          height: 100vh;
+          margin: auto;
+          align-items: center;
+          flex-direction: column;
+        }
+
+        .card-product {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 10px;
+          background-color: hsl(0, 0%, 100%);
+          width: 60%;
+          flex-direction: column;
+        }
+
+        #desktop {
+          display: none;
+        }
+
+        #mobile {
+          display: block;
+          width: 100%;
+          height: 50%;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+        }
+        .content {
+          margin-left: 19px;
+          margin-right: 19px;
+        }
       }
     </style>
   </head>
   <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+    <div class="container">
+      <div class="card-product">
+        <img id="desktop" src="./images/image-product-desktop.jpg" alt="" />
+        <img id="mobile" src="./images/image-product-mobile.jpg" alt="" />
+        <!-- <div
+          id="mobile"
+          style="
+            background: url(./images/image-product-mobile.jpg);
+            width: 100%;
+            height: 50%;
+          "
+        ></div> -->
+        <div class="content">
+          <p>P e r f u m e</p>
+          <p>Gabrielle Essence Eau De Parfum</p>
+          <p>
+            A floral, solar and voluptuous interpretation composed by Olivier
+            Polge, Perfumer-Creator for the House of CHANEL.
+          </p>
+          <p>$149.99 <span id="price">$169.99</span></p>
+          <button>
+            <svg width="15" height="16" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M14.383 10.388a2.397 2.397 0 0 0-1.518-2.222l1.494-5.593a.8.8 0 0 0-.144-.695.8.8 0 0 0-.631-.28H2.637L2.373.591A.8.8 0 0 0 1.598 0H0v1.598h.983l1.982 7.4a.8.8 0 0 0 .799.59h8.222a.8.8 0 0 1 0 1.599H1.598a.8.8 0 1 0 0 1.598h.943a2.397 2.397 0 1 0 4.507 0h1.885a2.397 2.397 0 1 0 4.331-.376 2.397 2.397 0 0 0 1.12-2.021ZM11.26 7.99H4.395L3.068 3.196h9.477L11.26 7.991Zm-6.465 6.392a.8.8 0 1 1 0-1.598.8.8 0 0 1 0 1.598Zm6.393 0a.8.8 0 1 1 0-1.598.8.8 0 0 1 0 1.598Z"
+                fill="#FFF"
+              />
+            </svg>
+            <span id="cart">Add to Cart</span>
+          </button>
+        </div>
+      </div>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
+    <!-- <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by
+      <a href="https://github.com/DilaNurfadila" target="_blank">Nurfadila</a>.
+    </div> -->
   </body>
 </html>
