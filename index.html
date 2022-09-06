@@ -131,10 +131,14 @@
 
         .attribution {
           font-size: 11px;
-          /* text-align: center; */
-          position: fixed;
-          bottom: 15px;
-          left: 165px;
+          text-align: center;
+          position: relative;
+          margin-top: 250px;
+          margin-bottom: 20px;
+          /* margin-left: 150px; */
+          /* bottom: 15px; */
+          /* height: 50vh; */
+          width: 100vh;
         }
 
         .container {
@@ -215,27 +219,4 @@
       <a href="https://github.com/DilaNurfadila" target="_blank">Nurfadila</a>.
     </div>
   </body>
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.4/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyDmLirVuRsAz7zb4C7NQjgrBfMSN6_4nmc",
-      authDomain: "product-preview-card-component.firebaseapp.com",
-      projectId: "product-preview-card-component",
-      storageBucket: "product-preview-card-component.appspot.com",
-      messagingSenderId: "635527481943",
-      appId: "1:635527481943:web:0ddd3469e82a6d836c7112",
-      measurementId: "G-V05H6TKSQ5",
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-  </script>
 </html>
